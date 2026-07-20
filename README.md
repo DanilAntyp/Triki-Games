@@ -122,7 +122,3 @@ Bluetooth and no `Thread.Sleep`.
 - No real fire button yet (see the raw monitor above); firing is automatic.
 - Gesture thresholds are unvalidated defaults until tuned on hardware (use record/playback).
 
-## Deferred / next ideas
-
-More waves/enemy variety, on-screen dev-panel toggles for invert axes, and wiring a real button
-into firing once its BLE encoding is found.
