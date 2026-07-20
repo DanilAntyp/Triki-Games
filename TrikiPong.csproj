@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>TrikiPong</RootNamespace>
+    <AssemblyName>TrikiPong</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <!-- Machine has .NET 9/10 but not 8; roll forward so `dotnet run` / the exe launch on any newer runtime. -->
+    <RollForward>LatestMajor</RollForward>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Triki\*.cs is picked up automatically by the SDK's default globbing since it now lives
+         inside the project folder. VisualOrientationMapper.cs is excluded: it depends on
+         MadgwickAHRS / ComplementaryTiltOrientationMapper classes that aren't present in the
+         Triki folder, so it can't compile as-is. The game only needs raw gyro roll rate, so
+         TrikiCore.cs is enough on its own. -->
+    <Compile Remove="Triki\VisualOrientationMapper.cs" />
+    <!-- The xUnit test project lives under Tests\ inside this folder; keep the SDK's recursive
+         globbing from pulling its sources (and xUnit references) into the app assembly. -->
+    <Compile Remove="Tests\**\*.cs" />
+  </ItemGroup>
+
+</Project>
